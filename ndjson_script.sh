@@ -7,7 +7,7 @@ echo -n "Enter the replacement word for 'request_uri': "
 read -r request_uri_replacement
 echo -n "Enter the replacement word for 'index-pattern': "
 read -r index_replacement
-mapfile -t client_urls < url_file
+mapfile -t client_urls < domain_file
 for ((i=0; i<${#client_urls[@]}; i++)); do
     if grep -q "domain$((i+1))" "$file"; then
         sed -i "s/domain$((i+1))/${client_urls[i]}/g" "$file"
