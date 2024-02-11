@@ -1,21 +1,27 @@
 #!/bin/bash
 file=$1
-# Prompt the user to input the replacement word for "title1"
-echo -n "Enter the replacement word for 'title' with 1st alphabet capital: "
-read -r title_replacement
-echo -n "Enter the replacement word for 'request_uri': "
-read -r request_uri_replacement
-echo -n "Enter the replacement word for 'index-pattern': "
-read -r index_replacement
-mapfile -t client_urls < url_file
+
+echo -n "Enter the replacement word for 'Product_name': "
+read -r product
+echo -n "Enter the replacement word for 'Endpoint_name' with 1st alphabet capital: "
+read -r endpoint
+echo -n "Enter the replacement word for 'Request_uri': "
+read -r request_uri
+echo -n "Enter the replacement word for 'Default-index-pattern': "
+read -r def_index
+echo -n "Enter the replacement word for 'Index-pattern': "
+read -r index
+mapfile -t client_urls < domain_file
 for ((i=0; i<${#client_urls[@]}; i++)); do
-    if grep -q "domain$((i+1))" "$file"; then
-        sed -i "s/domain$((i+1))/${client_urls[i]}/g" "$file"
+    if grep -q "DOMAIN$((i+1))" "$file"; then
+        sed -i "s/DOMAIN$((i+1))/${client_urls[i]}/g" "$file"
     else
-        echo "Error: 'domain$((i+1))' not found in $file."
+        echo "Error: 'DOMAIN$((i+1))' not found in $file."
     fi
 done
-sed -i "s/title1/$title_replacement/g" "$file"
-sed -i "s/req_uri/$request_uri_replacement/g" "$file"
-sed -i "s/index1/$index_replacement/g" "$file"
+sed -i "s/PRODUCT/$product/g" "$file"
+sed -i "s/ENDPOINT/$endpoint/g" "$file"
+sed -i "s/REQ_URI/$request_uri/g" "$file"
+sed -i "s/DEF_INDEX/$def_index/g" "$file"
+sed -i "s/INDEX/$index/g" "$file"
 echo "Replacements complete in $file."
