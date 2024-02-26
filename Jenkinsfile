@@ -32,8 +32,8 @@ pipeline {
         stage('Copy File to Local Repository') {
     steps {
         // Copy the updated file to a specific location in your local repository
-        sh "sudo cp /var/lib/jenkins/workspace/Push_on_github-pipeline/${params.FILENAME} /home/aqsa286/Downloads/test"
-        sh "sudo mv /home/aqsa286/Downloads/test/${params.FILENAME} /home/aqsa286/Downloads/test/${params.RENAME}"
+        sh "sudo cp /var/lib/jenkins/workspace/ndjson-pipeline-J.file/${params.FILENAME} /var/lib/jenkins/workspace/ndjson-pipeline-J.file/${params.RENAME}"
+        sh "sudo mv /var/lib/jenkins/workspace/ndjson-pipeline-J.file/${params.RENAME} /home/aqsa286/Downloads/test/"
     }
 }
     }
